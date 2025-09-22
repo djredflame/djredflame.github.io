@@ -69,7 +69,7 @@ jobs:
         # Comments: Quick diagnostics in CI logs.
 
       - name: Run unit tests (headless)
-        run: pnpm run test -- --watch=false --browsers=ChromeHeadless --no-progress
+        run: pnpm run test:ci
         # Comments: Add --no-sandbox if your launcher requires it.
 
   build:

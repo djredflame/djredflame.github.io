@@ -4,11 +4,7 @@
   "compilerOptions": {
     // App-specific overrides can go here if needed
   },
-  "files": [
-    "src/main.ts",
-    "server.ts",
-    "src/server.ts"
-  ],
+  "files": ["src/main.ts", "server.ts", "src/server.ts"],
   "include": ["src/**/*.d.ts"],
   "exclude": ["src/**/*.spec.ts", "src/test.ts", "server.ts", "src/main.server.ts"],
   "angularCompilerOptions": {
