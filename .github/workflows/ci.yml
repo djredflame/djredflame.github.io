@@ -1,0 +1,120 @@
+name: CI (Test & Build, pnpm, Alpine)
+
+on:
+  push:
+    branches: [dev, 'feature/*']
+    paths: ['frontend/**', '.github/workflows/ci.yml']
+  pull_request:
+    branches: [dev, main]
+    paths: ['frontend/**', '.github/workflows/ci.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+  CHROME_BIN: /usr/bin/chromium-browser
+
+jobs:
+  test:
+    name: Unit tests (Chrome Headless)
+    runs-on: ubuntu-latest
+    container:
+      image: node:20-alpine
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show OS inside container
+        run: cat /etc/os-release
+        # Comments: Should print Alpine Linux
+
+      - name: Install system deps (Alpine)
+        run: |
+          apk add --no-cache \
+            git bash python3 make g++ libc6-compat \
+            chromium nss freetype harfbuzz ttf-freefont
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('frontend/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
+
+      - name: Show versions
+        run: |
+          node -v
+          pnpm -v
+          npx ng version || true
+        # Comments: Quick diagnostics in CI logs.
+
+      - name: Run unit tests (headless)
+        run: pnpm run test:ci
+        # Comments: Add --no-sandbox if your launcher requires it.
+
+  build:
+    name: Build (production)
+    runs-on: ubuntu-latest
+    needs: test
+    container:
+      image: node:20-alpine
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show OS inside container
+        run: cat /etc/os-release
+        # Comments: Should print Alpine Linux
+
+      - name: Install system deps (Alpine)
+        run: |
+          apk add --no-cache git bash python3 make g++ libc6-compat
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('frontend/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build app (CI)
+        run: pnpm run build:ci || pnpm run build
+        # Comments: Uses your build:ci if present, otherwise falls back to build.
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-frontend
+          path: frontend/dist

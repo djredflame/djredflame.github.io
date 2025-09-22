@@ -15,7 +15,8 @@
     "build:pages": "ng build --configuration production --base-href=/",
     "build:pages:ssg": "ng build --configuration production --base-href=/ && ng run frontend:prerender",
     "deploy:pages": "pnpm run build:pages && pnpm dlx angular-cli-ghpages --dir=dist/frontend/browser --branch=gh-pages --message=\"deploy: pages (spa)\"",
-    "deploy:pages:ssg": "pnpm run build:pages:ssg && pnpm dlx angular-cli-ghpages --dir=dist/frontend --branch=gh-pages --message=\"deploy: pages (ssg)\""
+    "deploy:pages:ssg": "pnpm run build:pages:ssg && pnpm dlx angular-cli-ghpages --dir=dist/frontend --branch=gh-pages --message=\"deploy: pages (ssg)\"",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --progress=false"
   },
   "private": true,
   "dependencies": {
