@@ -1,0 +1,19 @@
+@use 'variables' as *;
+
+.app-header {
+    grid-area: header;
+}
+
+.app-container {
+    display: grid;
+    grid-template-areas: 
+        "header header header header"
+        "nav nav nav nav"
+        "main main main news"
+        "main main main news"
+        "main main main news"
+        "main main main news"
+        "footer footer footer footer";
+        height: 100vh;
+        background-color: $color-background-dark;
+}

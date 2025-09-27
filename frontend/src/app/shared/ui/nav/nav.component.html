@@ -1,7 +1,18 @@
-<ul>
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="/about">About</a></li>
-  <li><a routerLink="/projects">Projects</a></li>
-  <li><a routerLink="/music">Music</a></li>
-  <li><a routerLink="/contact">Contact</a></li>
-</ul>
+<nav class="nav" role="navigation" aria-label="Main">
+  <button class="nav__toggle" type="button"
+        (click)="toggleNav()" [attr.aria-expanded]="open" aria-controls="main-menu">
+    <span class="sr-only">Menu</span>
+    <svg class="icon flame" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="32" height="32" aria-hidden="true">
+      <path fill="#ff4500" d="M216 0c-23 63-112 117-112 208 0 81 65 144 144 144s144-63 144-144c0-49-28-100-61-137 6 40-17 75-49 100-24 19-34 40-34 61 0 34 28 62 62 62s62-28 62-62c0-41-22-76-52-105C283 94 250 50 216 0z"/>
+      <path fill="#ffae42" d="M272 208c0 35-29 64-64 64s-64-29-64-64c0-23 11-44 30-57 17 26 49 41 98 41z"/>
+    </svg>
+  </button>
+
+  <ul id="main-menu" class="nav__list" [class.open]="open">
+    <li class="nav__item"><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li class="nav__item"><a routerLink="/about" routerLinkActive="active">About</a></li>
+    <li class="nav__item"><a routerLink="/projects" routerLinkActive="active">Projects</a></li>
+    <li class="nav__item"><a routerLink="/music" routerLinkActive="active">Music</a></li>
+    <li class="nav__item"><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+  </ul>
+</nav>

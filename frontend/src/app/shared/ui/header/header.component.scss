@@ -1,0 +1,49 @@
+@use 'variables' as *;
+
+.app-header {
+  display: grid;
+  grid-template-rows: auto auto;
+  width: 100%;
+  background-color: $color-background-dark;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .logo {
+    width: 100%;
+    height: auto;
+    grid-row: 1;
+  }
+}
+
+app-nav {
+  grid-row: 2;
+  width: 100%;
+  justify-self: center;
+}
+
+@media (min-width: 768px) {
+  .app-header {
+    grid-template-rows: auto auto;
+
+    .logo {
+      width: 100%;
+      max-width: none;
+    }
+
+    app-nav {
+      width: auto;
+      justify-self: end;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .app-header {
+    padding: 1rem 3rem;
+
+    .logo {
+      width: 100%;
+    }
+  }
+}
