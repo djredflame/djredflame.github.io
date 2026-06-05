@@ -22,7 +22,7 @@ jobs:
     name: Build Angular
     runs-on: ubuntu-latest
     container:
-      image: node:20-alpine
+      image: node:24-alpine
     defaults:
       run:
         working-directory: frontend
