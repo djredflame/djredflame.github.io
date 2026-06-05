@@ -36,9 +36,7 @@
             },
             "outputMode": "server",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app/shared/scss"
-              ]
+              "includePaths": ["src/app/shared/scss"]
             }
           },
           "configurations": {
