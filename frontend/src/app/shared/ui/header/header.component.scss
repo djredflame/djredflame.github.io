@@ -1,49 +1,29 @@
 @use 'variables' as *;
 
-.app-header {
-  display: grid;
-  grid-template-rows: auto auto;
+:host {
+  display: block;
   width: 100%;
+  box-sizing: border-box;
   background-color: $color-background-dark;
   position: sticky;
   top: 0;
   z-index: 100;
-
-  .logo {
-    width: 100%;
-    height: auto;
-    grid-row: 1;
-  }
 }
 
 app-nav {
-  grid-row: 2;
+  display: block;
   width: 100%;
-  justify-self: center;
+  margin-inline: auto;
 }
 
 @media (min-width: 768px) {
-  .app-header {
-    grid-template-rows: auto auto;
-
-    .logo {
-      width: 100%;
-      max-width: none;
-    }
-
-    app-nav {
-      width: auto;
-      justify-self: end;
-    }
+  app-nav {
+    width: 100%;
   }
 }
 
 @media (min-width: 1200px) {
-  .app-header {
+  :host {
     padding: 1rem 3rem;
-
-    .logo {
-      width: 100%;
-    }
   }
 }

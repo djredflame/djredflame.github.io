@@ -16,8 +16,9 @@
   width: 100%;
   background: transparent;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
+  justify-items: center;
 }
 
 .nav__toggle {
@@ -29,7 +30,7 @@
   cursor: pointer;
   line-height: 0;
   color: $color-text;
-  justify-self: start;
+  justify-self: center;
 }
 
 .nav__toggle .flame {
@@ -91,7 +92,7 @@
     overflow: visible;
     background: transparent;
     border-top: 0;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .nav__item a {
