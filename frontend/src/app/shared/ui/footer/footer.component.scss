@@ -1,13 +1,7 @@
 @use 'variables' as *;
 
-.home-container {
+.footer {
   width: 100%;
-
-  h1 {
-    text-align: center;
-    color: $color-accent;
-    font-size: 2rem;
-  }
 
   p {
     text-align: center;
