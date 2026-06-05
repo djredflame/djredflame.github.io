@@ -36,7 +36,7 @@ jobs:
 
       - name: Install system deps (Alpine)
         run: |
-          apk add --no-cache git bash python3 make g++ libc6-compat
+          apk add --no-cache git bash python3 make g++ libc6-compat tar
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
