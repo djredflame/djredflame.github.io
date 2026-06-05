@@ -68,7 +68,12 @@ jobs:
       - name: Stage site and SPA fallback
         run: |
           mkdir -p ../site
-          cp -r "${{ steps.dist.outputs.dir }}"/* ../site/
+          BROWSER_DIR="${{ steps.dist.outputs.dir }}/browser"
+          if [ -d "$BROWSER_DIR" ]; then
+            cp -r "$BROWSER_DIR"/* ../site/
+          else
+            cp -r "${{ steps.dist.outputs.dir }}"/* ../site/
+          fi
           cp ../site/index.html ../site/404.html
         shell: bash
 
