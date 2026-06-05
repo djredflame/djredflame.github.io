@@ -1,0 +1,90 @@
+name: Deploy Angular to GitHub Pages (pnpm, Alpine)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Angular
+    runs-on: ubuntu-latest
+    container:
+      image: node:20-alpine
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show OS inside container
+        run: cat /etc/os-release
+        # Comments: Should print Alpine Linux
+
+      - name: Install system deps (Alpine)
+        run: |
+          apk add --no-cache git bash python3 make g++ libc6-compat
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('frontend/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (production, base-href '/')
+        run: pnpm run build:pages
+        # Comments: Uses your existing build:pages script.
+
+      - name: Detect Angular dist folder
+        id: dist
+        run: |
+          DIST_DIR=$(ls -d dist/* | head -n 1)
+          echo "DIST_DIR=$DIST_DIR"
+          echo "dir=$DIST_DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Stage site and SPA fallback
+        run: |
+          mkdir -p ../site
+          cp -r "${{ steps.dist.outputs.dir }}"/* ../site/
+          cp ../site/index.html ../site/404.html
+        shell: bash
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

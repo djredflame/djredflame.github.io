@@ -1,0 +1,58 @@
+name: Lint (ESLint, pnpm, Alpine)
+
+on:
+  push:
+    branches: [dev, 'feature/*']
+    paths: ['frontend/**', '.github/workflows/lint.yml']
+  pull_request:
+    branches: [dev, main]
+    paths: ['frontend/**', '.github/workflows/lint.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  eslint:
+    name: Run ESLint
+    runs-on: ubuntu-latest
+    container:
+      image: node:20-alpine
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show OS inside container
+        run: cat /etc/os-release
+        # Comments: Should print Alpine Linux
+
+      - name: Install system deps (Alpine)
+        run: |
+          apk add --no-cache git bash python3 make g++ libc6-compat
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('frontend/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run ESLint
+        run: pnpm run lint
+        # Comments: ESLint should fail the job on violations.

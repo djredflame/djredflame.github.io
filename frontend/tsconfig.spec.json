@@ -11,6 +11,5 @@
     "strictInputAccessModifiers": true
   },
   "files": [],
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts", "src/test.ts"]
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
 }

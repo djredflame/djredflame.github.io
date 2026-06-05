@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+app-header {
+  grid-area: header;
+  width: 100%;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto 1fr 1fr 1fr 1fr auto;
+
+  grid-template-areas:
+    'header header header header'
+    'nav nav nav nav'
+    'main main main news'
+    'main main main news'
+    'main main main news'
+    'main main main news'
+    'footer footer footer footer';
+  height: 100vh;
+  background-color: $color-background-dark;
+}
