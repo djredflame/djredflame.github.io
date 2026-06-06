@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavComponent } from '../nav/nav.component';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [NavComponent, RouterOutlet],
+  imports: [NavComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
