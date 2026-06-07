@@ -1,1 +1,31 @@
-<p>music works!</p>
+<section class="discographies">
+    <h1>Discographies</h1>
+    @if (releases$ | async; as releases) {
+        @for (item of releases; track item.title) {
+            <article>
+                <img [src]="item.image" [alt]="item.title" title="Release cover">
+                <div class="content">
+                    <h3>{{item.title}}</h3>
+                    <time>{{item.short_infos[0].released}}</time>
+                    <p>{{item.short_infos[0].songs}}</p>
+                    <p>{{item.short_infos[0].songs_length}}</p>
+                    <p>{{item.short_infos[0].bpm}}</p>
+                    <div class="icons">
+                        <a [href]="item.short_infos[0].spotify_link" target="_blank" rel="noopener noreferrer">
+                            <img [src]="item.short_infos[0].spotify_icon" alt="Spotify" title="Spotify">
+                        </a>
+                        <a [href]="item.short_infos[0].youtube_link" target="_blank" rel="noopener noreferrer">
+                            <img [src]="item.short_infos[0].youtube_icon" alt="YouTube" title="YouTube">
+                        </a>
+                        <a [href]="item.short_infos[0].itunes_link" target="_blank" rel="noopener noreferrer">
+                            <img [src]="item.short_infos[0].itunes_icon" alt="iTunes" title="iTunes">
+                        </a>
+                    </div>
+                </div>
+            </article>
+        }
+    }
+</section>
+
+
+

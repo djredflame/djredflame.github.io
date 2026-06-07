@@ -15,6 +15,7 @@
     background: rgba($color-background-dark, 0.8);
     padding: 1rem;
     border-radius: 1rem;
+    border: 2px solid $color-accent;
 
     .profile-image {
       padding-top: 1rem;
@@ -45,6 +46,8 @@
     width: min(100%, 38rem);
     background: rgba($color-background-dark, 0.8);
     padding: 1rem;
+    border: 2px solid $color-accent;
+    border-radius: 1rem;
 
     .title {
       text-align: center;

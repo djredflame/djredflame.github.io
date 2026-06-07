@@ -1,0 +1,91 @@
+@use 'variables' as *;
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+.discographies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 1.5em;
+    padding: 1em;
+    scroll-margin-top: 150px;
+    width: min(1500px, 100%);
+    margin-inline: auto;
+    box-sizing: border-box;
+
+    h1 {
+        flex-basis: 100%;
+        margin: 0;
+        color: $color-accent;
+        text-align: center;
+    }
+
+    article {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        padding: 0.5em;
+        grid-gap: 0.5em;
+        width: min(420px, 100%);
+
+        > img {
+            grid-row: 1;
+            border: 2px solid $color-accent;
+            border-radius: 2em;
+            width: 100%;
+            height: auto;
+        }
+
+        .content {
+            grid-row: 3;
+            display: grid;
+            grid-template-columns: 20% 20% 35% 25%;
+            border: 2px solid $color-accent;
+            border-radius: 2em;
+            background: rgba($color-background-dark, 0.8);
+            padding: 1em;
+
+            h3 {
+                grid-column: 1/-1;
+                color: $color-accent;
+            }
+
+            time,
+            p {
+                margin: 2em 0 2em 0;
+                color: $color-text;
+            }
+        }
+    }
+
+    .content .icons {
+        grid-column: 1/-1;
+        display: flex;
+        justify-content: center;
+        padding: 0.5em;
+
+        img {
+            width: 128px;
+            height: 128px;
+            padding: 0.5em;
+            border: none;
+            border-radius: 0;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .discographies {
+        gap: 4.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .discographies {
+        gap: 4.5rem;
+    }
+}
