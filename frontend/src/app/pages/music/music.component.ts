@@ -38,8 +38,10 @@ interface MusicData {
 export class MusicComponent {
   private readonly http = inject(HttpClient);
 
-  readonly releases$: Observable<Release[]> = this.http.get<MusicData>('assets/musicdata.json').pipe(
-    map((data) => data.releases ?? []),
-    catchError(() => of([])),
-  );
+  readonly releases$: Observable<Release[]> = this.http
+    .get<MusicData>('assets/musicdata.json')
+    .pipe(
+      map((data) => data.releases ?? []),
+      catchError(() => of([])),
+    );
 }
