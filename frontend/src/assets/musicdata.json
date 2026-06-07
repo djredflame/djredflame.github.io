@@ -1,0 +1,76 @@
+{
+  "releases": [
+    {
+      "image": "assets/resources/covers/Cover_Find_Flow.jpg",
+      "title": "Find Flow",
+      "short_infos": [
+        {
+          "released": 2025,
+          "songs": "1 Song",
+          "songs_length": "5 Min. 45 sec",
+          "bpm": "128 BPM",
+          "spotify_icon": "assets/resources/icons/spotify.png",
+          "spotify_link": "https://open.spotify.com/intl-de/album/7543yReuf6ojw47puZiymj?si=OzUlK7siRGmvHsgOb37NZg",
+          "youtube_icon": "assets/resources/icons/youtube.png",
+          "youtube_link": "https://music.youtube.com/watch?v=mUo69BB3f5c&si=_kBvkxY5C53BHzkH",
+          "itunes_icon": "assets/resources/icons/itunes.png",
+          "itunes_link": "https://music.apple.com/ch/album/find-flow/1839233312?i=1839233313"
+        }
+      ]
+    },
+    {
+      "image": "assets/resources/covers/Cover_Breathe_Again.png",
+      "title": "Breath Again",
+      "short_infos": [
+        {
+          "released": 2025,
+          "songs": "1 Song",
+          "songs_length": "4 Min. 04 sec",
+          "bpm": "143 BPM",
+          "spotify_icon": "assets/resources/icons/spotify.png",
+          "spotify_link": "https://open.spotify.com/intl-de/album/3Zl4tMXmSVCSeb9uIdTiRq?si=kLGm17jPRQGwpiciHCaxBA",
+          "youtube_icon": "assets/resources/icons/youtube.png",
+          "youtube_link": "https://music.youtube.com/watch?v=BS053uOLDrE&si=aYqkf_lj2ocs3Hyy",
+          "itunes_icon": "assets/resources/icons/itunes.png",
+          "itunes_link": "https://music.apple.com/ch/album/breathe-again/1827254948?i=1827254950"
+        }
+      ]
+    },
+    {
+      "image": "assets/resources/covers/Cover_Summer_Vibes.jpeg",
+      "title": "Summer Vibes",
+      "short_infos": [
+        {
+          "released": 2018,
+          "songs": "1 Song",
+          "songs_length": "4 Min. 31 sec",
+          "bpm": "128 BPM",
+          "spotify_icon": "assets/resources/icons/spotify.png",
+          "spotify_link": "https://open.spotify.com/album/2XFUE1SkxBwVkHoxWSJN3W",
+          "youtube_icon": "assets/resources/icons/youtube.png",
+          "youtube_link": "https://www.youtube.com/watch?v=9Fig45Lgfrw&list=PLPY7SNMth8dYYcc24wvGpjXMTP7x189oE",
+          "itunes_icon": "assets/resources/icons/itunes.png",
+          "itunes_link": "https://music.apple.com/us/album/summer-vibes/1410121451?i=1410121722"
+        }
+      ]
+    },
+    {
+      "image": "assets/resources/covers/Cover_Heart_in_Fire.jpeg",
+      "title": "Heart in Fire",
+      "short_infos": [
+        {
+          "released": 2014,
+          "songs": "2 Song",
+          "songs_length": "9 Min. 22 sec",
+          "bpm": "128 BPM",
+          "spotify_icon": "assets/resources/icons/spotify.png",
+          "spotify_link": "https://open.spotify.com/album/4qEK9uwnvTNcWQrJue5dgr?si=r5UFkTUMRXaf6JIPuTCVQQ",
+          "youtube_icon": "assets/resources/icons/youtube.png",
+          "youtube_link": "https://www.youtube.com/watch?v=a1u3rpDJkvs&list=PLPY7SNMth8dYYcc24wvGpjXMTP7x189oE&index=2",
+          "itunes_icon": "assets/resources/icons/itunes.png",
+          "itunes_link": "https://music.apple.com/us/album/heart-in-fire-single/878646664"
+        }
+      ]
+    }
+  ]
+}
